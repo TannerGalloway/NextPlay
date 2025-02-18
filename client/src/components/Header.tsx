@@ -1,7 +1,11 @@
 import "../styles/header.css";
 import { Notification, User } from "../assets/icons";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  login: boolean;
+}
+
+const Header: React.FC<HeaderProps> = ({ login }) => {
   return (
     <header className="header">
       <div className="navlinks">
@@ -14,10 +18,17 @@ const Header: React.FC = () => {
       <div className="search">
         <input type="text" placeholder="Search" />
       </div>
-      <div className="accountIcons">
-        <Notification wd="1.8rem" ht="1.8rem" color="var(--secondary)"/>
-        <User wd="1.8rem" ht="1.8rem" color="var(--secondary)"/>
+      {login ? (
+        <div className="accountIcons">
+          <Notification wd="2rem" ht="2rem" color="var(--secondary)" />
+          <User wd="2rem" ht="2rem" color="var(--secondary)" />
+        </div>
+      ) : (
+        <div className="accountButtons">
+        <button className="login">Login</button>
+        <button className="button-outline">Register</button>
       </div>
+      )}
     </header>
   );
 };

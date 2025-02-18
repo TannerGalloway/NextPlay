@@ -47,3 +47,8 @@ li:hover{
 .accountIcons svg:hover path{
     fill: var(--accent);
 }
+
+.accountButtons{
+    display: flex;    
+    gap: 1rem;
+}

@@ -5,8 +5,15 @@ import GameCard from "./components/GameCard";
 function App() {
   return (
     <>
-      <Header />
-      <GameCard cover="https://placehold.jp/50x50.png" title="The Witcher 3: Wild Hunt" developer="CD Projekt Red" devLogo="https://placehold.jp/28x28.png" btnType="View"/>
+      <Header login={true}/>
+      <div className="popularGames">
+        <h2>Popular Games</h2>
+        <GameCard cover="https://placehold.jp/50x50.png" title="The Witcher 3: Wild Hunt" genre="Role-playing (RPG)" btnType="View"/>
+      </div>
+      <div className="upcomingGames">
+        <h2>Upcoming Games</h2>
+        <GameCard cover="https://placehold.jp/50x50.png" title="The Elder Scrolls VI" genre="Role-playing (RPG)" btnType="Upcoming"/>
+      </div>
     </>
   );
 }
