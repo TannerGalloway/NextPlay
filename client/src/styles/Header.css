@@ -1,0 +1,49 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navlinks ul{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    color: var(--secondary);
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+li:hover{
+    color: var(--accent);
+    cursor: pointer;
+}
+
+.search input{
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: var(--background-light);
+    color: var(--secondary);
+    font-size: 1.25rem;
+    font-weight: 500;
+    outline: none;
+}
+
+.search input:focus{
+    outline: solid var(--primary) 1px;
+}
+
+.accountIcons{
+    display: flex;
+    gap: 1rem;
+}
+
+.accountIcons svg{
+    cursor: pointer;
+}
+
+.accountIcons svg:hover path{
+    fill: var(--accent);
+}
