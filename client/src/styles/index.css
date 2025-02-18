@@ -4,6 +4,8 @@
   --primary: #fbfbfb;
   --secondary: #9a9a9a;
   --accent: #e58e27;
+  --accent-dark: #c77e1b;
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;

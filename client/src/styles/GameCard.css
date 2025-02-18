@@ -1,0 +1,58 @@
+.gameCard {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-light);
+    max-width: fit-content;
+    border-radius: 0.5rem;
+}
+
+.gameCardBody {
+    padding: 1rem;
+}
+
+.gameCardBody h3,.gameCardBody p {
+    margin: 0;
+}
+
+.gameCardBody p {
+    color: var(--secondary);
+}
+
+.gameCardBody button {
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;   
+    border-radius: 0.5rem;
+    border: none;
+    background-color: var(--accent);
+    color: var(--background-light);
+    font-size: 1.125rem;
+    cursor: pointer;
+    float: right;
+    transition: all 0.2s ease-in-out;
+}
+
+.gameCardBody button:hover {
+    background-color: var(--accent-dark);
+}
+
+.gameCover {
+    border-radius: 0.5rem 0;
+    max-height: 14rem;
+}
+
+.developmentStudio {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+}
+
+.developmentStudio img {
+    border-radius: 50%;
+}
+
+.notifyBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
