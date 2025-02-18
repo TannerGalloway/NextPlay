@@ -1,0 +1,30 @@
+.gameCard {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-light);
+    max-width: 17rem;
+    border-radius: 0.5rem;
+}
+
+.gameCardBody {
+    padding: 1rem;
+}
+
+.gameCardBody h3,.gameCardBody p {
+    margin: 0;
+}
+
+.gameCardBody p {
+    color: var(--secondary);
+}
+
+.gameCover {
+    border-radius: 0.5rem 0.5rem 0 0;
+    max-height: 14rem;
+}
+
+.notifyBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
