@@ -1,54 +1,39 @@
-.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.navlinks ul{
-    margin: 0;
-    padding: 0;
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-    color: var(--secondary);
-    font-size: 1.25rem;
-    font-weight: 500;
+.navlinks ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  color: var(--secondary);
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
-li:hover{
-    color: var(--accent);
-    cursor: pointer;
+li:hover {
+  color: var(--accent);
+  cursor: pointer;
 }
 
-.search input{
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    border: none;
-    background-color: var(--background-light);
-    color: var(--secondary);
-    font-size: 1.25rem;
-    font-weight: 500;
-    outline: none;
+.accountIcons {
+  display: flex;
+  gap: 1rem;
 }
 
-.search input:focus{
-    outline: solid var(--primary) 1px;
+.accountIcons svg {
+  cursor: pointer;
 }
 
-.accountIcons{
-    display: flex;
-    gap: 1rem;
+.accountIcons svg:hover path {
+  fill: var(--accent);
 }
 
-.accountIcons svg{
-    cursor: pointer;
-}
-
-.accountIcons svg:hover path{
-    fill: var(--accent);
-}
-
-.accountButtons{
-    display: flex;    
-    gap: 1rem;
+.accountButtons {
+  display: flex;
+  gap: 1rem;
 }

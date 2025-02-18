@@ -20,16 +20,16 @@
 }
 
 button {
-    padding: 0.5rem 1rem;
-    margin-top: 0.5rem;   
-    border-radius: 0.5rem;
-    border: none;
-    background-color: var(--accent);
-    color: var(--background-light);
-    font-size: 1.125rem;
-    cursor: pointer;
-    float: right;
-    transition: all 0.2s ease-in-out;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: var(--accent);
+  color: var(--background-light);
+  font-size: 1.125rem;
+  cursor: pointer;
+  float: right;
+  transition: all 0.2s ease-in-out;
 }
 
 .button-outline {
@@ -38,7 +38,7 @@ button {
   color: var(--primary);
 }
 
-button:hover {  
+button:hover {
   background-color: var(--accent-dark);
 }
 
@@ -51,4 +51,19 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+}
+
+input {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: var(--background-light);
+  color: var(--secondary);
+  font-size: 1.25rem;
+  font-weight: 500;
+  outline: none;
+}
+
+input:focus {
+  outline: solid var(--primary) 1px;
 }

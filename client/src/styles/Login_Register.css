@@ -1,0 +1,26 @@
+.authCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-light);
+  max-width: 17rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.authForm input {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: var(--background);
+  color: var(--primary);
+}
