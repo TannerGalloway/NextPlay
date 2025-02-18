@@ -36,7 +36,7 @@
 }
 
 .gameCover {
-    border-radius: 0.5rem 0;
+    border-radius: 0.5rem 0.5rem 0 0;
     max-height: 14rem;
 }
 

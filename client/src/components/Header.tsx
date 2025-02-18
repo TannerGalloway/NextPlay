@@ -15,8 +15,8 @@ const Header: React.FC = () => {
         <input type="text" placeholder="Search" />
       </div>
       <div className="accountIcons">
-        <Notification />
-        <User />
+        <Notification wd="1.8rem" ht="1.8rem" color="var(--secondary)"/>
+        <User wd="1.8rem" ht="1.8rem" color="var(--secondary)"/>
       </div>
     </header>
   );
