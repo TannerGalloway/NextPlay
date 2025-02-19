@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/header.css";
+import "../styles/Header.css";
 import { Notification, User } from "../assets/icons";
 import supabase from "../utils/supabase";
 
