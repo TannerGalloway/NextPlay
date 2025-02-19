@@ -1,14 +1,19 @@
+import { useState } from "react";
 import "./styles/App.css";
 import Header from "./components/Header";
 import GameCard from "./components/GameCard";
 import Login_Register from "./components/Login_Register";
 
+
 function App() {
+  // Get the auth type the user selected
+  const [selectedAuth, setSelectedAuth] = useState<string>("");
+  
   return (
     <>
-      <Header login={true} />
+      <Header login={false} setSelectedAuth={setSelectedAuth}/>
       <div className="container">
-        <Login_Register authType="Login" />
+        <Login_Register authType={selectedAuth} />
       </div>
       <div className="popularGames">
         <h2>Popular Games</h2>
