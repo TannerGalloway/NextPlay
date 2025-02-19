@@ -5,16 +5,19 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "dotenvx run -- node server.js"
+    "express-dev": "dotenvx run -- node server.js",
+    "start": "npm install && cd ../client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@dotenvx/dotenvx": "^1.36.0",
     "@supabase/supabase-js": "^2.48.1",
     "cors": "^2.8.5",
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@dotenvx/dotenvx": "^1.36.0"
   }
 }

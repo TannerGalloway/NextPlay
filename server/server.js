@@ -2,6 +2,7 @@ import "@dotenvx/dotenvx/config";
 import express from "express";
 import authRoutes from "./routes/authRoutes.js";
 import cors from "cors";
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -10,7 +11,7 @@ const PORT = process.env.PORT || 8080;
 app.use(express.json());
 
 // Get the environment variable to check if it's development or production
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV === "production";
 
 if(!isProduction) {
     // Middleware for CORS to accept requests from the client
@@ -21,6 +22,19 @@ if(!isProduction) {
         credentials: true,
     }));
 
+}
+
+if (isProduction) {
+    app.use(cors({
+        origin: ["https://NextPlay.onrender.com"],
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        credentials: true,
+    }));
+
+
+    // Display the files built from vite
+    app.use(express.static(path.join(__dirname, '../client/dist')));
 }
 
 // Auth Routes

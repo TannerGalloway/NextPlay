@@ -30,7 +30,7 @@ const Login_Register: React.FC<Login_RegisterProps> = ({
 
     // Submit form data to the server
     axios
-      .post(`http://localhost:8080/auth/${authType}`, {
+      .post(`https://NextPlay.onrender.com/auth/${authType}`, {
         email: email,
         password: password,
       })
