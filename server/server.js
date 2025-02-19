@@ -34,7 +34,11 @@ if (isProduction) {
 
 
     // Display the files built from vite
-    app.use(express.static(path.join(__dirname, '../client/dist')));
+    app.use(express.static(path.join("../client/dist")));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.join("../client/dist", "index.html"));
+      });
 }
 
 // Auth Routes
