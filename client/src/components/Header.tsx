@@ -1,11 +1,13 @@
+import React from "react";
 import "../styles/header.css";
 import { Notification, User } from "../assets/icons";
 
 interface HeaderProps {
   login: boolean;
+  setSelectedAuth: React.Dispatch<React.SetStateAction<string>>
 }
 
-const Header: React.FC<HeaderProps> = ({ login }) => {
+const Header: React.FC<HeaderProps> = ({ login, setSelectedAuth }) => {
   return (
     <header className="header">
       <div className="navlinks">
@@ -25,8 +27,8 @@ const Header: React.FC<HeaderProps> = ({ login }) => {
         </div>
       ) : (
         <div className="accountButtons">
-        <button className="login">Login</button>
-        <button className="button-outline">Register</button>
+        <button className="login" onClick={() => setSelectedAuth("login")}>Login</button>
+        <button className="button-outline" onClick={() => setSelectedAuth("register")}>Register</button>
       </div>
       )}
     </header>
