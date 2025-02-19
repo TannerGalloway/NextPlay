@@ -13,7 +13,7 @@ app.use(express.json());
 const isProduction = process.env.NODE_ENV === 'production';
 
 if(!isProduction) {
-    // Middleware for CORS to accect requests from the client
+    // Middleware for CORS to accept requests from the client
     app.use(cors({
         origin: ["http://localhost:5173"],
         methods: ["GET", "POST", "PUT", "DELETE"],
@@ -23,7 +23,7 @@ if(!isProduction) {
 
 }
 
-// API Routes
+// Auth Routes
 app.use("/auth", authRoutes);
 
 
