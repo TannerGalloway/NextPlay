@@ -26,7 +26,7 @@ if(!isProduction) {
 
 if (isProduction) {
     app.use(cors({
-        origin: ["https://nextplay-dq7r.onrender.com"],
+        origin: ["https://nextplay-48g3.onrender.com"],
         methods: ["GET", "POST", "PUT", "DELETE"],
         allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true,
