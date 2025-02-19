@@ -1,39 +1,52 @@
 import React from "react";
 import { useState } from "react";
-import axios from 'axios';
+import { Session } from "@supabase/supabase-js";
+import supabase from "../utils/supabase";
+import axios from "axios";
 import "../styles/Login_Register.css";
 
 interface Login_RegisterProps {
   authType: string;
+  setSession: React.Dispatch<React.SetStateAction<Session | null>>;
 }
-const Login_Register: React.FC<Login_RegisterProps> = ({ authType }) => {
-
+const Login_Register: React.FC<Login_RegisterProps> = ({
+  authType,
+  setSession,
+}) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setComfirmPassword] = useState<string>("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (authType === "register" && password !== confirmPassword ) {
+    // Form validation
+    if (authType === "register" && password !== confirmPassword) {
       alert("Passwords don't match");
-      return
+      return;
+    } else if (authType === "register" && password.length < 6) {
+      alert("Password must be at least 6 characters long");
+      return;
     }
-    
-    axios.post(`http://localhost:8080/auth/${authType}`, {
-      email: email,
-      password: password,
-    })
-    .then((response) => console.log(response.data))
-    .catch((error) => console.error(error));
+
+    // Submit form data to the server
+    axios
+      .post(`http://localhost:8080/auth/${authType}`, {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        // Set the supabase session after successful login
+        supabase.auth.setSession(response.data.session);
+        // Set the session state to the supabase session
+        setSession(response.data.session);
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
     <>
       <div className="authCard">
-        <form
-          className="authForm"
-          onSubmit={handleSubmit}
-        >
+        <form className="authForm" onSubmit={handleSubmit}>
           <input
             required
             type="email"
@@ -57,10 +70,14 @@ const Login_Register: React.FC<Login_RegisterProps> = ({ authType }) => {
               id="confirmPassword"
               name="confirmPassword"
               placeholder="Confirm Password"
-              onChange={(event) => setComfirmPassword(event.currentTarget.value)}
+              onChange={(event) =>
+                setComfirmPassword(event.currentTarget.value)
+              }
             />
           ) : null}
-          <button type="submit">{authType === "register" ? "Register" : "Login"}</button>
+          <button type="submit">
+            {authType === "register" ? "Register" : "Login"}
+          </button>
         </form>
       </div>
     </>
