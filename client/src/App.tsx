@@ -20,6 +20,7 @@ function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [popularGames, setPopularGames] = useState<GameDetails[]>([]);
   const [upcomingGames, setUpcomingGames] = useState<GameDetails[]>([]);
+  const [hasError, sethasError] = useState<string | null>(null);
 
   useEffect(() => {
     // Check if the user is logged in
@@ -45,17 +46,23 @@ function App() {
   useEffect(() => {
     // Call the API to get the top 5 popular games based on player count from Steam per 24 hours
     const getTopGames = async () => {
-      axios.post("https://nextplay-48g3.onrender.com/api/topSteamGamesByPlayerCount"
-      ).then((response) => {
-        setPopularGames(response.data);
-      }).catch((error) => console.error(error));
-    }
+      axios
+        .post(
+          "https://nextplay-48g3.onrender.com/api/topSteamGamesByPlayerCount"
+        )
+        .then((response) => {
+          setPopularGames(response.data);
+        })
+        .catch((error) => (error ? sethasError(error) : null));
+    };
 
     const getUpcomingGames = async () => {
-      axios.post("https://nextplay-48g3.onrender.com/api/upcomingGames"
-      ).then((response) => {
-        setUpcomingGames(response.data);
-      }).catch((error) => console.error(error));
+      axios
+        .post("https://nextplay-48g3.onrender.com/api/upcomingGames")
+        .then((response) => {
+          setUpcomingGames(response.data);
+        })
+        .catch((error) => (error ? sethasError(error) : null));
     };
 
     getTopGames();
@@ -73,35 +80,43 @@ function App() {
       ) : null}
       <div className="popularGames">
         <h2>Popular Games</h2>
-        {popularGames.length === 0 ? <p>Loading...</p> : (
-        <div className="gameCardContainer">
-          {popularGames.map((game, index) => (
-            <GameCard
-              key={index}
-              cover={game.cover}
-              title={game.title}
-              genre={game.genre}
-              btnType="View"
-            />
-          ))}
-        </div>
+        {hasError ? (
+          <p>{"An error occured"}</p>
+        ) : popularGames.length === 0 ? (
+          <p>Loading...</p>
+        ) : (
+          <div className="gameCardContainer">
+            {popularGames.map((game, index) => (
+              <GameCard
+                key={index}
+                cover={game.cover}
+                title={game.title}
+                genre={game.genre}
+                btnType="View"
+              />
+            ))}
+          </div>
         )}
       </div>
       <div className="upcomingGames">
         <h2>Upcoming Games</h2>
-        {upcomingGames.length === 0 ? <p>Loading...</p> : (
-        <div className="gameCardContainer">
-          {upcomingGames.map((game, index) => (
-            <GameCard
-              key={index}
-              cover={game.cover}
-              title={game.title}
-              genre={game.genre}
-              releaseDate={game.releaseDate}
-              btnType="Upcoming"
-            />
-          ))}
-        </div>
+        {hasError ? (
+          <p>{"An error occured"}</p>
+        ) : upcomingGames.length === 0 ? (
+          <p>Loading...</p>
+        ) : (
+          <div className="gameCardContainer">
+            {upcomingGames.map((game, index) => (
+              <GameCard
+                key={index}
+                cover={game.cover}
+                title={game.title}
+                genre={game.genre}
+                releaseDate={game.releaseDate}
+                btnType="Upcoming"
+              />
+            ))}
+          </div>
         )}
       </div>
     </>
