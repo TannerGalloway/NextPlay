@@ -1,7 +1,9 @@
 import express from "express";
 const router = express.Router();
-import { topSteamGamesByPlayerCount } from "../controllers/apiController.js";
+import { topSteamGamesByPlayerCount, upcomingGames } from "../controllers/apiController.js";
 
 router.post("/topSteamGamesByPlayerCount", topSteamGamesByPlayerCount);
+
+router.post("/upcomingGames", upcomingGames);
 
 export default router;

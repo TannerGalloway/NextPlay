@@ -12,12 +12,14 @@ interface GameDetails {
   cover: string;
   title: string;
   genre: string;
+  releaseDate?: string;
 }
 function App() {
   // Get the auth type the user selected
   const [selectedAuth, setSelectedAuth] = useState<string>("login");
   const [session, setSession] = useState<Session | null>(null);
   const [popularGames, setPopularGames] = useState<GameDetails[]>([]);
+  const [upcomingGames, setUpcomingGames] = useState<GameDetails[]>([]);
 
   useEffect(() => {
     // Check if the user is logged in
@@ -49,7 +51,15 @@ function App() {
       }).catch((error) => console.error(error));
     }
 
+    const getUpcomingGames = async () => {
+      axios.post("https://nextplay-48g3.onrender.com/api/upcomingGames"
+      ).then((response) => {
+        setUpcomingGames(response.data);
+      }).catch((error) => console.error(error));
+    };
+
     getTopGames();
+    getUpcomingGames();
   }, []);
 
   return (
@@ -63,6 +73,7 @@ function App() {
       ) : null}
       <div className="popularGames">
         <h2>Popular Games</h2>
+        {popularGames.length === 0 ? <p>Loading...</p> : (
         <div className="gameCardContainer">
           {popularGames.map((game, index) => (
             <GameCard
@@ -74,15 +85,24 @@ function App() {
             />
           ))}
         </div>
+        )}
       </div>
       <div className="upcomingGames">
         <h2>Upcoming Games</h2>
-        <GameCard
-          cover="https://placehold.jp/50x50.png"
-          title="The Elder Scrolls VI"
-          genre="Role-playing (RPG)"
-          btnType="Upcoming"
-        />
+        {upcomingGames.length === 0 ? <p>Loading...</p> : (
+        <div className="gameCardContainer">
+          {upcomingGames.map((game, index) => (
+            <GameCard
+              key={index}
+              cover={game.cover}
+              title={game.title}
+              genre={game.genre}
+              releaseDate={game.releaseDate}
+              btnType="Upcoming"
+            />
+          ))}
+        </div>
+        )}
       </div>
     </>
   );
