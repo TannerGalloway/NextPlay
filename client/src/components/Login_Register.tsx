@@ -44,7 +44,7 @@ const Login_Register: React.FC<Login_RegisterProps> = ({
   };
 
   return (
-    <>
+    <div className="container">
       <div className="authCard">
         <form className="authForm" onSubmit={handleSubmit}>
           <input
@@ -80,7 +80,7 @@ const Login_Register: React.FC<Login_RegisterProps> = ({
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

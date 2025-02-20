@@ -2,6 +2,7 @@ import "@dotenvx/dotenvx/config";
 import express from "express";
 import authRoutes from "./routes/authRoutes.js";
 import apiRoutes from "./routes/apiRoutes.js";
+import dbRoutes from "./routes/dbRoutes.js";
 import cors from "cors";
 import path from "path";
 
@@ -43,6 +44,9 @@ app.use("/auth", authRoutes);
 
 // API Routes
 app.use("/api", apiRoutes);
+
+// Database Routes
+app.use("/db", dbRoutes);
 
 
 app.listen(PORT, () => { console.log(`Server started on port ${PORT}`) });
