@@ -25,12 +25,12 @@ cd NextPlay
 
 ### Client:
 ```sh
-cd /client
+cd client
 npm install
 ```
 ### Server:
 ```sh
-cd /server
+cd server
 npm install
 ```
 
