@@ -1,6 +1,7 @@
 import "@dotenvx/dotenvx/config";
 import express from "express";
 import authRoutes from "./routes/authRoutes.js";
+import apiRoutes from "./routes/apiRoutes.js";
 import cors from "cors";
 import path from "path";
 
@@ -18,7 +19,7 @@ if(!isProduction) {
     app.use(cors({
         origin: ["http://localhost:5173"],
         methods: ["GET", "POST", "PUT", "DELETE"],
-        allowedHeaders: ['Content-Type', 'Authorization'],
+        allowedHeaders: ['Content-Type', 'Authorization', "Client-ID"],
         credentials: true,
     }));
 
@@ -28,7 +29,7 @@ if (isProduction) {
     app.use(cors({
         origin: ["https://nextplay-48g3.onrender.com"],
         methods: ["GET", "POST", "PUT", "DELETE"],
-        allowedHeaders: ['Content-Type', 'Authorization'],
+        allowedHeaders: ['Content-Type', 'Authorization', "Client-ID"],
         credentials: true,
     }));
 
@@ -39,6 +40,9 @@ if (isProduction) {
 
 // Auth Routes
 app.use("/auth", authRoutes);
+
+// API Routes
+app.use("/api", apiRoutes);
 
 
 app.listen(PORT, () => { console.log(`Server started on port ${PORT}`) });

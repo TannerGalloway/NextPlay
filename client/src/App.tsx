@@ -5,11 +5,19 @@ import "./styles/App.css";
 import Header from "./components/Header";
 import GameCard from "./components/GameCard";
 import Login_Register from "./components/Login_Register";
+import axios from "axios";
 
+// Types for the game details object returned from the API
+interface GameDetails {
+  cover: string;
+  title: string;
+  genre: string;
+}
 function App() {
   // Get the auth type the user selected
   const [selectedAuth, setSelectedAuth] = useState<string>("login");
   const [session, setSession] = useState<Session | null>(null);
+  const [popularGames, setPopularGames] = useState<GameDetails[]>([]);
 
   useEffect(() => {
     // Check if the user is logged in
@@ -32,6 +40,18 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    // Call the API to get the top 5 popular games based on player count from Steam per 24 hours
+    const getTopGames = async () => {
+      axios.post("https://nextplay-48g3.onrender.com/api/topSteamGamesByPlayerCount"
+      ).then((response) => {
+        setPopularGames(response.data);
+      }).catch((error) => console.error(error));
+    }
+
+    getTopGames();
+  }, []);
+
   return (
     <>
       <Header login={session !== null} setSelectedAuth={setSelectedAuth} />
@@ -43,12 +63,17 @@ function App() {
       ) : null}
       <div className="popularGames">
         <h2>Popular Games</h2>
-        <GameCard
-          cover="https://placehold.jp/50x50.png"
-          title="The Witcher 3: Wild Hunt"
-          genre="Role-playing (RPG)"
-          btnType="View"
-        />
+        <div className="gameCardContainer">
+          {popularGames.map((game, index) => (
+            <GameCard
+              key={index}
+              cover={game.cover}
+              title={game.title}
+              genre={game.genre}
+              btnType="View"
+            />
+          ))}
+        </div>
       </div>
       <div className="upcomingGames">
         <h2>Upcoming Games</h2>
