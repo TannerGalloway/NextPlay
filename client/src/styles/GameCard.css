@@ -39,3 +39,8 @@
     align-items: center;
     gap: 0.5rem;
 }
+
+.cardActions {
+    display: flex;
+    justify-content: space-between;
+}

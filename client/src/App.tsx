@@ -13,6 +13,8 @@ interface GameDetails {
   title: string;
   genre: string;
   releaseDate?: string;
+  gameID: number;
+  userSession: Session | null
 }
 function App() {
   // Get the auth type the user selected
@@ -69,15 +71,10 @@ function App() {
     getUpcomingGames();
   }, []);
 
-  return (
-    <>
+  const LandingPage = () => {
+    return (
+      <>
       <Header login={session !== null} setSelectedAuth={setSelectedAuth} />
-      {/* Only show the login or register form if the user is not logged in */}
-      {session === null ? (
-        <div className="container">
-          <Login_Register authType={selectedAuth} setSession={setSession} />
-        </div>
-      ) : null}
       <div className="popularGames">
         <h2>Popular Games</h2>
         {hasError ? (
@@ -86,12 +83,14 @@ function App() {
           <p>Loading...</p>
         ) : (
           <div className="gameCardContainer">
-            {popularGames.map((game, index) => (
+            {popularGames.map((game) => (
               <GameCard
-                key={index}
+                key={game.gameID}
                 cover={game.cover}
                 title={game.title}
                 genre={game.genre}
+                gameID={game.gameID}
+                userSession={session}
                 btnType="View"
               />
             ))}
@@ -106,19 +105,30 @@ function App() {
           <p>Loading...</p>
         ) : (
           <div className="gameCardContainer">
-            {upcomingGames.map((game, index) => (
+            {upcomingGames.map((game) => (
               <GameCard
-                key={index}
+                key={game.gameID}
                 cover={game.cover}
                 title={game.title}
                 genre={game.genre}
                 releaseDate={game.releaseDate}
+                gameID={game.gameID}
+                userSession={session}
                 btnType="Upcoming"
               />
             ))}
           </div>
         )}
       </div>
+      </>
+    );
+  };
+
+  return (
+    <>
+    {session === null ? <Login_Register authType={selectedAuth} setSession={setSession} /> : (
+      <LandingPage/>
+    )}
     </>
   );
 }

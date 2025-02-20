@@ -88,6 +88,7 @@ const getGameInfoMQ = async (gameId)=> {
     gameInfo.title = response.data[1].result[0].name;
     gameInfo.cover = `https://images.igdb.com/igdb/image/upload/t_cover_big/${response.data[0].result[0].image_id}.jpg`;
     gameInfo.releaseDate = response.data[2].result[0].human;
+    gameInfo.gameID = gameId;
     
     // Get the genre based on the genre id returned from the multiquery
     gameInfo.genre = await getGenre(response.data[1].result[0].genres[0]);
