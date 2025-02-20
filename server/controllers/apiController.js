@@ -78,12 +78,11 @@ const getTitleCoverMQ = async (gameId)=> {
     ]).request("multiquery");
     gameInfo.title = response.data[1].result[0].name;
     gameInfo.cover = `https://images.igdb.com/igdb/image/upload/t_cover_big/${response.data[0].result[0].image_id}.jpg`;
-    
+
     // Get the genre based on the genre id returned from the multiquery
     gameInfo.genre = await getGenre(response.data[1].result[0].genres[0]);
     return gameInfo;
   } catch (error) {
-    console.error("multiQuery", error);
     return { error: error };
   }
 };

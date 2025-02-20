@@ -43,7 +43,7 @@ function App() {
   useEffect(() => {
     // Call the API to get the top 5 popular games based on player count from Steam per 24 hours
     const getTopGames = async () => {
-      axios.post("http://localhost:8080/api/topSteamGamesByPlayerCount"
+      axios.post("https://nextplay-48g3.onrender.com/api/topSteamGamesByPlayerCount"
       ).then((response) => {
         setPopularGames(response.data);
       }).catch((error) => console.error(error));
